@@ -49,11 +49,43 @@ function index(app, db, request, cheerio, Youtube) {
             console.log(array.length)
 
             for (var i=0;i<array.length;i++){
-                result.push({counrty : countryArray[i], gold : array[i][0], silver : array[i][1], bronze : array[i][2], rank : i+1})
+                result.push({country : countryArray[i], gold : array[i][0], silver : array[i][1], bronze : array[i][2], rank : i+1})
             }
             res.send(result)
         });
     })
+
+    app.get('/parsing', (req, res)=>{
+        var body = req.body
+        
+        var GetTokenOptions = {
+            method: 'GET',
+            url: "https://www.pyeongchang2018.com/ko/news",
+            headers: {
+                'cache-control': 'no-cache',
+                'user-agent': 'node.js'
+                }
+            }
+        request(GetTokenOptions, function (error, response, body) {
+            if (error) throw error;
+        
+            var $ = cheerio.load(body);
+
+            var array = new Array()
+
+            for(var i=1;i<11;i++){
+                var title = $('#dynamicLastest > li:nth-child('+i+') > a > div.txt-cont > p.desc').text()
+                var photo = $('#dynamicLastest > li:nth-child('+i+') > a > div.thum-box > div > img').attr('data-src')
+                var json = {
+                    title : title,
+                    photo : "https://www.pyeongchang2018.com"+photo
+                }
+                array.push(json)
+            }
+           
+            res.send(array)
+            
+        })})
 
     app.get('/youtube', (req, res)=>{
         var options = { method: 'GET',
