@@ -20,7 +20,7 @@ function auth(app, db, request, Crypto, RandomString) {
                     email : body.email,
                     password : body.password,
                     pe : body.pe,
-                    from : body.from,
+                    region : body.region,
                     user_token : RandomString.generate(10)
                 })
                 
@@ -60,7 +60,7 @@ function auth(app, db, request, Crypto, RandomString) {
         var body = req.body
         db.User.update({
             email : body.email
-        }, {$set:{username : body.username, password : body.password, pe : body.pe, from : body.from}}, (err)=>{
+        }, {$set:{username : body.username, password : body.password, pe : body.pe, region: body.region}}, (err)=>{
             if(err){
                 console.log('/auth/edituser userupdate Error')
                 throw err

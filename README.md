@@ -81,7 +81,7 @@
 #### /auth/regiser (회원가입)
 >Requiring Params
 
-    username, email, password, pe(좋아하는 스포츠), from(출신지)
+    username, email, password, pe(좋아하는 스포츠), region(출신지)
     
 >Return Values
 >>Success
@@ -95,7 +95,7 @@
 #### /auth/edituser (회원정보수정)
 >Requiring Params
 
-    username, email(수정불가), password, pe, from
+    username, email(수정불가), password, pe, region
     
 >Return Values
 >>Success

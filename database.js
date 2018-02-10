@@ -15,7 +15,7 @@ var User_Schema = new Schema({
     username : {type : String},
     email : {type : String},
     password : {type : String},
-    from : {type : Number},
+    region : {type : Number},
     pe : {type : Number},
     user_token : {type : String}
 })
