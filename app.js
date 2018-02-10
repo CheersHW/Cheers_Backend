@@ -3,6 +3,7 @@ var bodyParser = require('body-parser')
 var morgan = require('morgan')
 var RandomString = require('randomstring')
 var fs = require('fs')
+var Youtube = require('youtube-search');
 var app = express()
 var cheerio = require('cheerio')
 var request = require('request')
@@ -19,5 +20,5 @@ app.listen(3000, ()=>{
     console.log('Server Running At 3000 Port!')
 })
 
-require('./routes/index')(app, db, request, cheerio)
+require('./routes/index')(app, db, request, cheerio, Youtube)
 require('./routes/auth')(app, db, request, Crypto, RandomString)

@@ -1,5 +1,3 @@
-import { fail } from "assert";
-
 module.exports = auth
 
 function auth(app, db, request, Crypto, RandomString) {

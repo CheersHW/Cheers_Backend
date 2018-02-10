@@ -48,6 +48,16 @@
 
     HTTP : 200, JSONArray
 
+#### /youtube (유투브 실시간 확인) GET
+>Requiring Params
+
+    No Params
+
+>Return Values
+>>Success
+
+    HTTP : 200, VideoID
+
 ### Auth
 
 #### /auth/login (로그인)

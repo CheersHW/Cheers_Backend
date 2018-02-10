@@ -1,6 +1,6 @@
 module.exports = index
 
-function index(app, db, request, cheerio) {
+function index(app, db, request, cheerio, Youtube) {
 
     app.get('/', (req, res) => {
         res.send('Hello')
@@ -53,6 +53,27 @@ function index(app, db, request, cheerio) {
             }
             res.send(result)
         });
+    })
+
+    app.get('/youtube', (req, res)=>{
+        var options = { method: 'GET',
+        url: 'https://www.googleapis.com/youtube/v3/search',
+        qs: 
+         { part: 'id',
+           key: 'AIzaSyAIkpfsnh7XgMFUkpZYDi3sm97R6dihBA4',
+           channelId: 'UCSI2RHJc_CHX5T8a7scmf8A',
+           order: 'date',
+           type: 'video' },
+        headers: 
+         { 'postman-token': 'd19d1d63-bd27-38cc-0263-58749a61f293',
+           'cache-control': 'no-cache' } };
+      
+      request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        var data = JSON.parse(body)
+        res.send(200, data.items[0].id.videoId)
+      });
+      
     })
 
 }
