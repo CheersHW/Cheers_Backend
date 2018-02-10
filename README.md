@@ -85,7 +85,7 @@
 #### /auth/edituser (회원정보수정)
 >Requiring Params
 
-    username, id, password
+    username, email(수정불가), password, pe, from
     
 >Return Values
 >>Success

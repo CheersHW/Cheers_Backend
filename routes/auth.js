@@ -60,7 +60,30 @@ function auth(app, db, request, Crypto, RandomString) {
 
     app.post('/auth/edituser', (req, res)=>{
         var body = req.body
-        
+        db.User.update({
+            email : body.email
+        }, {$set:{username : body.username, password : body.password, pe : body.pe, from : body.from}}, (err)=>{
+            if(err){
+                console.log('/auth/edituser userupdate Error')
+                throw err
+            }
+            else {
+                db.User.findOne({
+                    email : body.email
+                }, (err,data)=>{
+                    if(err){
+                        console.log('/auth/edituser userfind Error')
+                        throw err
+                    }
+                    else if(data){
+                        res.send(200, data)
+                    }
+                    else {
+                        res.send(401, {success:false, message:"찾을수 없음"})
+                    }
+                })
+            }
+        })
     })
 
     app.post('/auth/auto', (req, res)=>{
