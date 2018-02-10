@@ -21,7 +21,7 @@ function auth(app, db, request, Crypto, RandomString) {
                     password : body.password,
                     pe : body.pe,
                     from : body.from,
-                    token : RandomString.generate(10)
+                    user_token : RandomString.generate(10)
                 })
                 
                 user_data.save((err)=>{
@@ -87,7 +87,7 @@ function auth(app, db, request, Crypto, RandomString) {
     app.post('/auth/auto', (req, res)=>{
         var body = req.body
         db.User.findOne({
-            token : body.token
+            user_token : body.user_token
         }, (err, data)=>{
             if(err){
                 console.log('/auth/auto userfind Error')
