@@ -80,6 +80,16 @@
 
     HTTP : 200, VideoID
 
+#### /news (평창뉴스 웹파싱) GET
+>Requiring Params
+
+    No Params
+
+>Return Values
+>>Success
+
+    HTTP : 200, JSONArray
+
 ### Auth
 
 #### /auth/login (로그인)
@@ -100,7 +110,7 @@
 
     HTTP : 401
     
-#### /auth/regiser (회원가입)
+#### /auth/register (회원가입)
 >Requiring Params
 
     username, email, password, pe(좋아하는 스포츠), region(출신지)

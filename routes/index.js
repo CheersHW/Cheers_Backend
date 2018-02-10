@@ -55,7 +55,7 @@ function index(app, db, request, cheerio, Youtube) {
         });
     })
 
-    app.get('/parsing', (req, res)=>{
+    app.get('/news', (req, res)=>{
         var body = req.body
         
         var GetTokenOptions = {
