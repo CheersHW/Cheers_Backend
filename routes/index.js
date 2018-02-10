@@ -76,9 +76,11 @@ function index(app, db, request, cheerio, Youtube) {
             for(var i=1;i<11;i++){
                 var title = $('#dynamicLastest > li:nth-child('+i+') > a > div.txt-cont > p.desc').text()
                 var photo = $('#dynamicLastest > li:nth-child('+i+') > a > div.thum-box > div > img').attr('data-src')
+                var link = $('#dynamicLastest > li:nth-child('+i+') > a').attr('href')
                 var json = {
                     title : title,
-                    photo : "https://www.pyeongchang2018.com"+photo
+                    photo : "https://www.pyeongchang2018.com"+photo,
+                    link : "https://www.pyeongchang2018.com"+link
                 }
                 array.push(json)
             }
