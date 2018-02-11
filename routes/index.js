@@ -7,7 +7,6 @@ function index(app, db, request, cheerio, Youtube) {
     })
 
     app.get('/ranking', (req, res) => {
-        var url = "https://www.pyeongchang2018.com/ko/game-time/results/OWG2018/ko/general/medal-standings.htm";
 
         var GetTokenOptions = {
             method: 'GET',

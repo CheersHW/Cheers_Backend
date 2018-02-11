@@ -26,5 +26,5 @@ app.listen(3000, ()=>{
 
 require('./routes/index')(app, db, request, cheerio, Youtube)
 require('./routes/auth')(app, db, request, Crypto, RandomString)
-require('./routes/aid')(app, db, multer, RandomString)
-require('./routes/comment')(app, db, RandomString)
+require('./routes/aid')(app, db, multer, RandomString, request, cheerio)
+require('./routes/comment')(app, db, RandomString, multer)

@@ -1,6 +1,6 @@
 module.exports = aid
 
-function aid(app, db, multer, RandomString){
+function aid(app, db, multer, RandomString, request, cheerio){
 
     var storage = multer.diskStorage({
         destination: (req, file, cb)=>{
@@ -114,6 +114,59 @@ function aid(app, db, multer, RandomString){
                 res.send(200, [])
             }
         })
+    })
+
+    app.post('/aid/rank', (req, res)=>{
+        var GetTokenOptions = {
+            method: 'GET',
+            url: "http://sports.news.naver.com/pc2018/medal/index.nhn?sortType=goldRanking",
+            headers: {
+                'cache-control': 'no-cache',
+                'user-agent': 'node.js'
+            }
+        };
+
+        request(GetTokenOptions, function (error, response, body) {
+            if (error) throw error;
+
+            var $ = cheerio.load(body);
+
+            var medalArray = new Array()
+            var medal = $('span.medal_num')
+            medal.each(function (i, elem) {
+                medalArray[i] = $(this).text();
+            });
+            var array = new Array()
+            var temp = new Array()
+            for (var i = 0; i < medalArray.length; i++) {
+                if (i % 4 == 0 && i != 0) {
+                    array.push(temp)
+                    temp = new Array()
+                }
+                temp.push(medalArray[i])
+            }
+
+            var country = $('span.country_name')
+            var countryArray = new Array()
+            country.each(function (i, elem) {
+                countryArray[i] = $(this).text();
+            });
+
+            var result = new Array();
+
+            for (var i=0;i<array.length;i++){
+                for (var j=0;j<4;j++){
+                    array[i][j] = 0;
+                }
+            }
+
+            console.log(array)
+
+            for (var i=0;i<array.length;i++){
+                result.push({country : countryArray[i], gold : array[i][0], silver : array[i][1], bronze : array[i][2], rank : i+1})
+            }
+            res.send(result)
+        });
     })
 
 }

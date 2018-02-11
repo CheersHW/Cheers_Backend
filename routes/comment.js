@@ -1,6 +1,6 @@
 module.exports = comment
 
-function comment(app, db, Randomstring){
+function comment(app, db, Randomstring, multer){
 
     var storage = multer.diskStorage({
         destination: (req, file, cb)=>{
