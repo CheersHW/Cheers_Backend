@@ -98,6 +98,7 @@ function aid(app, db, multer, RandomString){
     })
 
     app.post('/aid/list', (req, res)=>{
+        var body = req.body
         var query = db.Sound.find({region : body.region}).sort({ "like" : -1})
         query.exec((err, data)=>{
             if(err){
