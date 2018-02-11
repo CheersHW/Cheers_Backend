@@ -18,6 +18,7 @@ app.use(bodyParser.urlencoded({
 app.use(morgan('dev'))
 
 app.use('/sound',express.static('sound'))
+app.use('/comment', express.static('comment'))
 
 app.listen(3000, ()=>{
     console.log('Server Running At 3000 Port!')
@@ -26,3 +27,4 @@ app.listen(3000, ()=>{
 require('./routes/index')(app, db, request, cheerio, Youtube)
 require('./routes/auth')(app, db, request, Crypto, RandomString)
 require('./routes/aid')(app, db, multer, RandomString)
+require('./routes/comment')(app, db, RandomString)

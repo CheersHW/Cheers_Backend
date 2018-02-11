@@ -32,9 +32,19 @@ var Sound_Schema = new Schema({
     sound_token : {type : String}
 })
 
+var Comment_Schema = new Schema({
+    comment_token : {type : String},
+    author_name : {type : String},
+    author_token : {type : String},
+    text : {type : String},
+    video : {type : String}
+})
+
 var User = mongoose.model('user', User_Schema)
 var Sound = mongoose.model('sound', Sound_Schema)
+var Comment = mongoose.model('comment', Comment_Schema)
 
 exports.db = db
 exports.User = User
 exports.Sound = Sound
+exports.Comment = Comment
