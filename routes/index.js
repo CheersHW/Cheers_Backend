@@ -105,7 +105,7 @@ function index(app, db, request, cheerio, Youtube) {
       request(options, function (error, response, body) {
         if (error) throw new Error(error);
         var data = JSON.parse(body)
-        res.send(200, data.items[0].id.videoId)
+        res.send(200, data.items[0].id.videoId.toString())
       });
       
     })
