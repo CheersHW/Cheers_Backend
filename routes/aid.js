@@ -7,7 +7,8 @@ function aid(app, db, multer, RandomString){
             cb(null, './sound')
         },
         filename: (req, file, cb)=>{
-            cb(null, RandomString.generate(10)+'.'+file.mimetype.split('/')[1])
+            var size = file.originalname.split('.')
+            cb(null, RandomString.generate(10)+'.'+size[size.length-1])
         }
     })
 
@@ -15,6 +16,7 @@ function aid(app, db, multer, RandomString){
 
     app.post('/aid/upload', upload.single('file') ,(req, res)=>{
         var body = req.body
+        console.log(req.file)
         var upload_sound = new db.Sound({
             region : body.region,
             title : body.title,
