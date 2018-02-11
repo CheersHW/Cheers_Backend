@@ -192,6 +192,16 @@
 >>Success
 
     HTTP : 200, JSONArray
+
+#### /aid/rank (응원 랭킹)
+>Requiring Params
+
+    No Params
+
+>Return Values
+>>Success
+
+    HTTP : 200, JSONArray
     
 ## Schema
 ### User_Schema
