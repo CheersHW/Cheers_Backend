@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(morgan('dev'))
 
-app.use(express.static('sound'))
+app.use('/sound',express.static('sound'))
 
 app.listen(3000, ()=>{
     console.log('Server Running At 3000 Port!')
